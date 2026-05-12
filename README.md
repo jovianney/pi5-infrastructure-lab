@@ -21,3 +21,23 @@ management via SSH. No monitor or keyboard required.
 ## What I Built
 - Configured Pi headless via Raspberry Pi Imager
 - Enabled SSH f
+
+## Screenshots
+
+### SSH Connection Established
+![SSH Terminal](Terminal_2.png)
+
+### Pi-hole Installation
+![Pi-hole Installing](Terminal%201.png)
+
+### Installation Complete
+![Installation Complete](complete.png)
+
+### Pi-hole Dashboard Live
+![Pi-hole Dashboard](Pi-Hole_Dashboard.png)
+
+### Queries Being Blocked in Real Time
+![Blocked Queries](Queries_Blocked.png)
+
+### MacBook DNS Configured to Pi-hole
+![DNS Settings](DNS_Settings.png)

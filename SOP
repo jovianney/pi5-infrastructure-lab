@@ -1,0 +1,74 @@
+# Standard Operating Procedures
+
+## SOP 1: SSH into Pi remotely
+**When to use:** Any time you need to 
+control the Pi from your MacBook
+
+**Steps:**
+1. Open Terminal on MacBook
+2. Type: ssh jovi@retropi.local
+3. Enter Pi password when prompted
+4. You are now controlling the Pi remotely
+
+**Expected result:**
+jovi@retropi:~ $
+
+---
+
+## SOP 2: Check Pi-hole status
+**When to use:** To verify Pi-hole is 
+running and blocking ads
+
+**Steps:**
+1. Open browser on MacBook
+2. Go to: http://192.168.12.240/admin
+3. Check dashboard for active status
+4. Verify queries are being blocked
+
+**Expected result:**
+Status shows Active with queries being blocked
+
+---
+
+## SOP 3: Update Pi system
+**When to use:** Monthly or when updates available
+
+**Steps:**
+1. SSH into Pi
+2. Run: sudo apt update && sudo apt upgrade -y
+3. Wait for updates to complete
+4. Type: exit to disconnect
+
+**Expected result:**
+System fully updated with no errors
+
+---
+
+## SOP 4: Restart Pi-hole service
+**When to use:** If Pi-hole stops blocking ads
+
+**Steps:**
+1. SSH into Pi
+2. Run: pihole restartdns
+3. Check dashboard to confirm Active status
+
+**Expected result:**
+Pi-hole restarted and blocking ads again
+
+---
+
+## SOP 5: Add device to Pi-hole DNS
+**When to use:** New device joins home network
+
+**iPhone steps:**
+1. Settings → WiFi
+2. Tap (i) next to network name
+3. Configure DNS → Manual
+4. Add Server: 192.168.12.240
+5. Save
+
+**MacBook steps:**
+1. System Settings → Network → WiFi
+2. Details → DNS tab
+3. Click + and add: 192.168.12.240
+4. OK → Apply

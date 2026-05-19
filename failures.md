@@ -1,47 +1,38 @@
-# Failures & Troubleshooting Log
+## Dreamcast Emulation - lr-flycast Build Failure
 
-## Issue 1: No SD card slot on MacBook
-**Date:** May 9, 2026  
-**Problem:** Could not flash SD card directly 
-from MacBook — no built-in SD card slot  
-**Fix:** Purchased USB-C hub with SD card reader  
-**Lesson:** Always check hardware compatibility 
-before starting a deployment
+**Date:** May 2026
 
-## Issue 2: Hotspot connection failed (April 2026)
-**Date:** April 5, 2026  
-**Problem:** Pi configured with iPhone hotspot 
-(iPhonezilla) — hotspot was unreliable and Pi 
-could not maintain connection  
-**Fix:** Reflashed SD card with stable home WiFi 
-credentials  
-**Lesson:** Use stable networks for first boot. 
-Hotspots are unreliable for server deployments
+**Problem:** lr-flycast would not build on RetroPie 4.8.11 + Debian 13 (Trixie)
 
-## Issue 3: No power outlet at coffee shop
-**Date:** April 5, 2026  
-**Problem:** Attempted first boot at coffee shop 
-with no available power outlet  
-**Fix:** Used Anker Solix C200 portable power 
-station via USB-C to power Pi 5  
-**Lesson:** Pi 5 only needs 27W — any quality 
-power bank works for field deployments
+**Error:**
+core/deps/libzip/mkstemp.c:70:15: error: implicit declaration of function 'getpid'
+make: *** Error 1
 
-## Issue 4: SSH permission denied (wrong password)
-**Date:** May 9, 2026  
-**Problem:** SSH connection found Pi but returned 
-permission denied on first two attempts  
-**Fix:** Entered correct password on third attempt 
-(password not visible when typing — normal behavior)  
-**Lesson:** SSH passwords are hidden while typing. 
-This is a security feature not a bug
+**What I tried:**
+- sudo apt install flycast → package not found
+- sudo apt install libretro-flycast → package not found
+- git pull retropie-setup → already up to date
+- Checked build logs → GCC compiler too strict on Debian 13
 
-## Issue 5: T-Mobile router DNS locked down
-**Date:** May 9, 2026  
-**Problem:** T-Mobile KVD21 gateway does not allow 
-DNS configuration through browser interface — 
-requires mobile app which also lacks DNS settings  
-**Fix:** Manually configured DNS on each device 
-individually (MacBook and mobile devices)  
-**Lesson:** ISP routers are often locked down. 
-Device-level DNS configuration is a reliable workaround
+**Root cause:** Debian 13 (Trixie) GCC compiler incompatible with lr-flycast source code. Confirmed by RetroPie community on Reddit.
+
+**Fix:** Reflashed SD card with Raspberry Pi OS Bookworm (Debian 12) Legacy 64-bit. lr-flycast installed via precompiled binary successfully.
+
+---
+
+## Dreamcast - Game Crashing on Launch
+
+**Problem:** Sonic Adventure 2 crashed immediately back to EmulationStation
+
+**What I tried:**
+- video_driver = "gl" → crashed
+- video_driver = "glcore" → crashed  
+- video_driver = "vulkan" → not supported
+- Converted .cue/.bin to .chd → still crashed
+
+**Root cause:** Pi 5 uses 16KB memory pages, lr-flycast expects 4KB pages
+
+**Fix:** Added kernel=kernel8.img to /boot/firmware/config.txt
+This forces the older kernel which is compatible with lr-flycast
+
+**Result:** Sonic Adventure 2 running at full speed ✅

@@ -104,6 +104,22 @@ No monitor. No keyboard. Just terminal.
 - Always use Raspberry Pi OS Legacy (Bookworm) 
   for RetroPie compatibility, not Trixie
 
+
+## Hardware Build
+
+
+### Dreamcast Case + Sonic SD Card
+![Sonic SD Card](sd-pi.png)
+
+### Pre-Build Setup
+![Pre-Build](prebuild.png)
+
+### 8BitDo Pro 3 Controller + Dreamcast Case
+![Controller Setup](8bit-pi.png)
+
+### Samsung PRO Plus 512GB — Sonic Edition
+![Sonic SD Card](sd-card.png)
+
 ---
 
 *Built by Jovi Cruz — IT Management student, 

@@ -160,6 +160,87 @@ Type yes when asked to authorize service.
 ```bash
 emulationstation
 ```
+---
+
+## Step 12 - Install Tailscale VPN
+
+```bash
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up
+```
+
+- Open the URL it gives you in browser
+- Sign in or create free Tailscale account
+- Install Tailscale on Mac at tailscale.com/download
+- Sign into same account
+- Enable auto-start on boot:
+
+```bash
+sudo systemctl enable tailscaled
+```
+
+- Test remote access:
+```bash
+ssh jovi@100.121.71.88
+```
+
+Resume: "Configured secure remote access via Tailscale VPN mesh networking"
+
+---
+
+## Step 13 - Configure UFW Firewall
+
+```bash
+sudo apt install ufw -y
+sudo ufw allow ssh
+sudo ufw allow 53
+sudo ufw allow 80
+sudo ufw allow 41641/udp
+sudo ufw enable
+```
+
+Verify:
+```bash
+sudo ufw status
+```
+
+Resume: "Hardened Linux server with UFW firewall"
+
+---
+
+## Step 14 - Install and Configure Fail2ban
+
+```bash
+sudo apt install fail2ban -y
+sudo nano /etc/fail2ban/jail.local
+```
+
+Add:
+```
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+backend = systemd
+maxretry = 3
+bantime = 3600
+findtime = 600
+```
+
+```bash
+sudo systemctl restart fail2ban
+sudo systemctl enable fail2ban
+```
+
+Verify:
+```bash
+sudo fail2ban-client status sshd
+```
+
+Note: Bookworm uses systemd journal not auth.log
+Use backend = systemd in jail.local
+
+Resume: "Hardened Linux server against brute-force attacks using UFW and Fail2ban"
 
 ---
 

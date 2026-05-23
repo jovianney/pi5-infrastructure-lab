@@ -185,3 +185,17 @@ scp -r jovi@retropi.local:/home/jovi/RetroPie/BIOS/ ~/Desktop/
 
 3. lr-flycast crashes without kernel8.img
    → See Step 7
+
+4. Controller works in menu but not in games
+   → Add input_joypad_driver = "udev" to
+     /opt/retropie/configs/all/retroarch.cfg
+
+5. Audio not working
+   → Run retropie_setup.sh
+   → Configuration / tools → audiosettings
+   → Set to HDMI 1
+
+6. VMU memory card not saving
+   → Run: mkdir -p ~/.config/retroarch/saves/flycast
+   → Run: dd if=/dev/zero bs=128K count=1 
+     of=~/.config/retroarch/saves/flycast/vmu_save_A1.bin

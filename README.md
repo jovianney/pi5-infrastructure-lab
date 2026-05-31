@@ -70,11 +70,8 @@ Deployed a headless Raspberry Pi 5 server running Pi-hole DNS sinkhole, RetroPie
 
 ## Live Demo
 
-### RetroPie Running on Samsung TV
-![RetroPie Menu](03-RetroPie/screenshots/IMG_9529.png)
-
-### Sonic Adventure 2 — Dreamcast on Pi 5
-![Sonic Adventure 2](03-RetroPie/screenshots/IMG_9589.png)
+![RetroPie Menu](03-RetroPie/screenshots/retropi_menu.png)
+![Sonic Adventure 2](03-RetroPie/screenshots/sa2_menu.png)
 
 ---
 

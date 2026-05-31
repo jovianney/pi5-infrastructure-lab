@@ -12,7 +12,8 @@ Deployed a headless Raspberry Pi 5 server running Pi-hole DNS sinkhole, RetroPie
 |---|---|
 | Computer | Raspberry Pi 5 8GB |
 | Case | GeeekPi Armor Lite V5 Active Cooler |
-| Storage | SanDisk 256GB microSDXC |
+| Storage (Active) | Samsung T7 1TB SSD — Pi boots directly from SSD |
+| Storage (Planned) | 2x 4TB HDD in RAID 1 array via OpenMediaVault |
 | Power | CanaKit 45W USB-C |
 | Display | 4K Micro HDMI to HDMI |
 | Controller | 8BitDo Pro 3 (Bluetooth) |
@@ -107,7 +108,7 @@ Deployed a headless Raspberry Pi 5 server running Pi-hole DNS sinkhole, RetroPie
 - Always use Raspberry Pi OS Legacy (Bookworm) for RetroPie compatibility, not Trixie
 - UFW blocks all ports by default — always open required ports after installing web services
 - Docker images are architecture specific — always verify arm64 vs amd64 before pulling
-
+- SD cards wear out under constant read/write — migrated OS boot to Samsung T7 SSD for reliability
 ---
 
 ## Hardware Build

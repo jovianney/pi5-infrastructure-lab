@@ -3,10 +3,7 @@
 > "I trained engineers at Google, Microsoft, and LinkedIn — now I became one."
 
 ## Overview
-Deployed a headless Raspberry Pi 5 server running Pi-hole DNS 
-sinkhole, RetroPie emulation station, and Bluetooth controller 
-support — all managed remotely via SSH from a MacBook. 
-No monitor. No keyboard. Just terminal.
+Deployed a headless Raspberry Pi 5 server running Pi-hole DNS sinkhole, RetroPie emulation station, and Bluetooth controller support — all managed remotely via SSH from a MacBook. No monitor. No keyboard. Just terminal.
 
 ---
 
@@ -56,21 +53,28 @@ No monitor. No keyboard. Just terminal.
 - Paired 8BitDo Pro 3 controller via bluetoothctl
 - Running Sonic Adventure 2 at full speed on Samsung TV
 
+### 📷 Security Camera System
+- Deployed Reolink Lumus IP camera with static IP on home network
+- Verified RTSP stream and connected to Pi via MotionEye
+- Configured motion detection with automated email alerts
+- Remote viewing accessible via Tailscale VPN from anywhere
+- UFW firewall configured to allow only necessary ports
+
 ---
 
 ## Network Architecture
 
-![Network Diagram](Network_Diagram.png)
+![Network Diagram](Network-Diagram/Network_Diagram.png)
 
 ---
 
 ## Live Demo
 
 ### RetroPie Running on Samsung TV
-![RetroPie Menu](IMG_9529.png)
+![RetroPie Menu](03-RetroPie/screenshots/IMG_9529.png)
 
 ### Sonic Adventure 2 — Dreamcast on Pi 5
-![Sonic Adventure 2](IMG_9589.png)
+![Sonic Adventure 2](03-RetroPie/screenshots/IMG_9589.png)
 
 ---
 
@@ -81,47 +85,46 @@ No monitor. No keyboard. Just terminal.
 - File transfer via SCP
 - Bluetooth device pairing via CLI
 - Kernel configuration and troubleshooting
+- IP camera integration and motion detection
+- VPN mesh networking via Tailscale
+- Python scripting for automated alerts
 - Technical documentation (README, SOP, failures log)
 
 ---
 
-## Project Files
-| File | Description |
+## Project Structure
+| Folder | Description |
 |---|---|
-| README.md | Project overview and documentation |
-| SOP.md | Step by step setup guides |
-| failures.md | Errors encountered and how I fixed them |
-| mock-it-tickets.md | IT troubleshooting scenarios |
-| Network_Diagram.png | Home network architecture |
+| 01-Pi-Setup/ | OS setup, SSH config, SOP |
+| 02-Pi-hole/ | DNS sinkhole setup and screenshots |
+| 03-RetroPie/ | Emulation station setup and screenshots |
+| 04-Security-Camera/ | IP camera, MotionEye, Python alerts |
+| 05-IT-Playbook/ | Mock IT tickets and failures log |
+| Network-Diagram/ | Home network architecture |
 
 ---
 
 ## Lessons Learned
-- Pi 5 uses 16KB memory pages by default which breaks 
-  certain emulators — fixed via kernel config
-- T-Mobile gateway locks DNS — workaround via 
-  Pi-hole on device level
-- Always use Raspberry Pi OS Legacy (Bookworm) 
-  for RetroPie compatibility, not Trixie
-
-
-## Hardware Build
-
-
-### Dreamcast Case + Sonic SD Card
-![Sonic SD Card](sd-pi.png)
-
-### Pre-Build Setup
-![Pre-Build](prebuild.png)
-
-### 8BitDo Pro 3 Controller + Dreamcast Case
-![Controller Setup](8bit-pi.png)
-
-### Samsung PRO Plus 512GB — Sonic Edition
-![Sonic SD Card](sd-card.png)
+- Pi 5 uses 16KB memory pages by default which breaks certain emulators — fixed via kernel config
+- T-Mobile gateway locks DNS — workaround via Pi-hole on device level
+- Always use Raspberry Pi OS Legacy (Bookworm) for RetroPie compatibility, not Trixie
+- UFW blocks all ports by default — always open required ports after installing web services
+- Docker images are architecture specific — always verify arm64 vs amd64 before pulling
 
 ---
 
-*Built by Jovi Cruz — IT Management student, 
-Google IT Support cert in progress*  
+## Hardware Build
+
+### Pre-Build Setup
+![Pre-Build](01-Pi-Setup/screenshots/prebuild.png)
+
+### 8BitDo Pro 3 Controller + Dreamcast Case
+![Controller Setup](03-RetroPie/screenshots/8bit-pi.png)
+
+### Samsung PRO Plus 512GB — Sonic Edition
+![Sonic SD Card](03-RetroPie/screenshots/sd-card.png)
+
+---
+
+*Built by Jovi Cruz — IT Management student, Google IT Support cert in progress*
 *github.com/jovianney*

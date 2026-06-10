@@ -135,3 +135,42 @@ Pi-hole already has this built in. Custom services need it added manually.
 Auto-restart = difference between 5 second recovery and full outage.
 
 ---
+
+
+---
+
+## Incident 005 — OMV Install Destroyed Network Stack
+**Date:** June 2026
+**Category:** Software Conflict / Network
+**Command Used:** OMV install script
+
+**Problem:**
+OpenMediaVault installation took over netplan and systemd-networkd,
+conflicting with Tailscale and breaking eth0 completely on reboot.
+
+**Symptoms:**
+- Pi only showed 127.0.0.1 and docker0 172.17.0.1 on boot
+- SSH unreachable on both local and Tailscale IPs
+- Tailscale showing as down
+- Required physical keyboard and monitor to recover
+
+**Fix:**
+- Booted from backup SD card
+- Mounted T7, purged all OMV packages
+- Installed dhcpcd5
+- Created /etc/rc.local startup script to run dhclient on boot
+- Restored systemd-resolved
+- Replaced OMV with Samba
+
+**Verification:**
+SSH working on 192.168.12.239
+Tailscale restored — 100.121.71.88
+Samba NAS working with 4 shares
+
+**Lesson:**
+Always backup /etc/netplan before major installs.
+OMV is incompatible with Tailscale — it takes over the entire network stack.
+Use Samba instead — does the same job without touching network config.
+Always keep a bootable SD card ready for physical recovery.
+
+---

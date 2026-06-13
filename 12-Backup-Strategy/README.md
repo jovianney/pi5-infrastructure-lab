@@ -56,5 +56,5 @@ Runs every night at 2:00am automatically.
 "Designed and implemented automated backup strategy with tiered retention and documented disaster recovery procedures"
 
 ## Screenshots
-- crontab-scheduled.png
-- backup-folder-contents.png
+![Cron Job Scheduled](crontab-scheduled.png)
+![Backup Folder Contents](backup-folder-contents.png)

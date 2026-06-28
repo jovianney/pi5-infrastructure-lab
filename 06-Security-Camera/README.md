@@ -110,4 +110,4 @@ See `failures.md` for all errors encountered during this build.
 ---
 
 ## Future Upgrade — Boss Level 🔥
-Phase 2: Swap MotionEye for Frigate NVR + add Coral TPU USB for local AI object detection (person/vehicle/animal recognition). Same Reolink camera, completely upgraded brain.
+Phase 2: Swap MotionEye for Frigate NVR + add Coral TPU USB for local AI object detection (person/vehicle/animal recognition). Same Reolink camera, completely upgraded brain.  

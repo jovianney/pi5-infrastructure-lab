@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jovianney De La Cruz — IT Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #e8e4dc;
+      min-height: 100vh;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      border-bottom: 1px solid #1e1e1e;
+      position: sticky;
+      top: 0;
+      background: #0a0a0a;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: #e8e4dc;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #888;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #e8e4dc; }
+
+    .hero {
+      padding: 6rem 3rem 5rem;
+      border-bottom: 1px solid #1e1e1e;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,140,50,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #c87941;
+      border: 1px solid #c87941;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: #f0ece4;
+    }
+
+    .hero-name span { color: #c87941; }
+
+    .hero-title {
+      font-size: 1rem;
+      color: #666;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hero-story {
+      max-width: 560px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #999;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-story strong { color: #e8e4dc; font-weight: 500; }
+
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: #c87941;
+      color: #0a0a0a;
+      border: none;
+      padding: 0.75rem 1.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: #d98a52; }
+
+    .btn-outline {
+      background: transparent;
+      color: #e8e4dc;
+      border: 1px solid #333;
+      padding: 0.75rem 1.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover { border-color: #888; color: #fff; }
+
+    .section {
+      padding: 4rem 3rem;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c87941;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #1e1e1e;
+      max-width: 80px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: #1e1e1e;
+      border: 1px solid #1e1e1e;
+    }
+
+    .project-card {
+      background: #0a0a0a;
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+
+    .project-card:hover { background: #111; }
+
+    .project-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      color: #333;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f0ece4;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+
+    .tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #555;
+      border: 1px solid #222;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+
+    .project-link {
+      font-size: 0.75rem;
+      color: #c87941;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #c87941;
+      margin-bottom: 1rem;
+    }
+
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .skill-list li {
+      font-size: 0.9rem;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skill-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: #333;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .certs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: #1e1e1e;
+      border: 1px solid #1e1e1e;
+    }
+
+    .cert-item {
+      background: #0a0a0a;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cert-name { font-size: 0.9rem; color: #e8e4dc; font-weight: 500; }
+
+    .cert-status {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.7rem;
+      border-radius: 2px;
+    }
+
+    .cert-status.progress {
+      color: #c87941;
+      border: 1px solid #3d2810;
+      background: #1a1008;
+    }
+
+    .contact-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #888;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: #c87941; }
+
+    .footer {
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer p { font-size: 0.75rem; color: #333; letter-spacing: 0.05em; }
+
+    @media (max-width: 600px) {
+      .nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1rem; }
+      .hero { padding: 3rem 1.25rem 3rem; }
+      .section { padding: 3rem 1.25rem; }
+      .footer { padding: 1.5rem 1.25rem; flex-direction: column; gap: 0.5rem; }
+      .cert-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-logo">Jovianney De La Cruz</div>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-tag">IT Professional &middot; Bay Area</div>
+    <h1 class="hero-name">Jovianney<br><span>De La Cruz</span></h1>
+    <p class="hero-title">IT Support Specialist &amp; Home Lab Engineer</p>
+    <p class="hero-story">
+      I spent <strong>10 years training engineers at Google, Microsoft, LinkedIn, Uber, and ByteDance</strong> &mdash;
+      now I became one. My background in coaching, systems thinking, and real-world problem solving
+      translates directly into IT. I build, break, and document everything.
+    </p>
+    <div class="hero-cta">
+      <a href="https://github.com/jovianney" class="btn-primary">View GitHub</a>
+      <a href="mailto:jovianney@ymail.com" class="btn-outline">Get in Touch</a>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-number">01</div>
+        <h3 class="project-title">Pi 5 Infrastructure Lab</h3>
+        <p class="project-desc">Headless Raspberry Pi 5 server with Pi-hole DNS sinkhole blocking 82,624 domains. SSH access, Cloudflare upstream DNS, full GitHub documentation with SOP and failure logs.</p>
+        <div class="project-tags">
+          <span class="tag">Linux</span>
+          <span class="tag">SSH</span>
+          <span class="tag">DNS</span>
+          <span class="tag">Networking</span>
+        </div>
+        <a href="https://github.com/jovianney/pi5-infrastructure-lab" class="project-link">View on GitHub &rarr;</a>
+      </div>
+      <div class="project-card">
+        <div class="project-number">02</div>
+        <h3 class="project-title">IT Troubleshooting Playbook</h3>
+        <p class="project-desc">Living GitHub wiki documenting real IT fixes from actual homelab experience. Format: Problem &rarr; Diagnosis &rarr; Fix &rarr; Prevention. Includes Python scripts for ping logging and DNS testing.</p>
+        <div class="project-tags">
+          <span class="tag">Documentation</span>
+          <span class="tag">Python</span>
+          <span class="tag">GitHub</span>
+        </div>
+        <a href="https://github.com/jovianney" class="project-link">In Progress &rarr;</a>
+      </div>
+      <div class="project-card">
+        <div class="project-number">03</div>
+        <h3 class="project-title">Subnet CLI Tool</h3>
+        <p class="project-desc">JavaScript command-line tool that takes an IP like 192.168.1.0/24 and outputs subnet range, broadcast address, and subnet mask. Demonstrates networking knowledge through code.</p>
+        <div class="project-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Networking</span>
+          <span class="tag">CLI</span>
+        </div>
+        <a href="https://github.com/jovianney" class="project-link">Coming Soon &rarr;</a>
+      </div>
+      <div class="project-card">
+        <div class="project-number">04</div>
+        <h3 class="project-title">IT Asset Management DB</h3>
+        <p class="project-desc">SQL database for tracking IT assets including laptops, servers, and monitors. Includes inventory management workflows and query documentation.</p>
+        <div class="project-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Database</span>
+          <span class="tag">IT Mgmt</span>
+        </div>
+        <a href="https://github.com/jovianney" class="project-link">Coming Soon &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Operating Systems</h3>
+        <ul class="skill-list">
+          <li>Linux (Raspberry Pi OS)</li>
+          <li>macOS</li>
+          <li>Windows Server</li>
+          <li>Ubuntu</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Networking</h3>
+        <ul class="skill-list">
+          <li>DNS / Pi-hole</li>
+          <li>SSH / Remote Access</li>
+          <li>TCP/IP Fundamentals</li>
+          <li>Subnetting</li>
+          <li>Firewall (UFW)</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Tools &amp; Platforms</h3>
+        <ul class="skill-list">
+          <li>Git / GitHub</li>
+          <li>Bash Scripting</li>
+          <li>Python</li>
+          <li>JavaScript</li>
+          <li>Cloudflare DNS</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Soft Skills</h3>
+        <ul class="skill-list">
+          <li>Technical Documentation</li>
+          <li>Client Communication</li>
+          <li>Training &amp; Onboarding</li>
+          <li>Problem Solving</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="certs">
+    <div class="section-label">Certifications &amp; Education</div>
+    <div class="certs-list">
+      <div class="cert-item">
+        <span class="cert-name">Google IT Support Certificate</span>
+        <span class="cert-status progress">In Progress</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-name">CompTIA A+</span>
+        <span class="cert-status progress">Planned</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-name">CompTIA Network+</span>
+        <span class="cert-status progress">Planned</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-name">CompTIA Security+</span>
+        <span class="cert-status progress">Planned</span>
+      </div>
+      <div class="cert-item">
+        <span class="cert-name">BS — Business Administration, IT Management &middot; CSU East Bay</span>
+        <span class="cert-status progress">In Progress</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="section-label">Contact</div>
+    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem; max-width: 400px; line-height: 1.7;">
+      Open to IT support, help desk, and junior sysadmin opportunities in the Bay Area.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:jovianney@ymail.com" class="contact-link">
+        ✉ jovianney@ymail.com
+      </a>
+      <a href="https://github.com/jovianney" class="contact-link">
+        ⌥ github.com/jovianney
+      </a>
+      <a href="https://jovilabs.net" class="contact-link">
+        &#127760; jovilabs.net
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2026 Jovianney De La Cruz &mdash; Built with HTML/CSS/JS &middot; Hosted on GitHub Pages</p>
+    <p style="color: #c87941; font-size: 0.7rem; letter-spacing: 0.1em;">JOVIOS ECOSYSTEM</p>
+  </footer>
+
+</body>
+</html>

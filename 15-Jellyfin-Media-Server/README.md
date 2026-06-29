@@ -48,3 +48,17 @@ Jellyfin serves movies, TV shows, and music directly from the Pi to any device o
 - [ ] Migrate media storage to WD Elements 6TB once powered hub (SABRENT HB-BU10) arrives
 - [ ] Format WD Elements to ext4
 - [ ] Add first media library once content is loaded
+
+## qBittorrent Integration
+
+qBittorrent runs alongside Jellyfin as the download client. Downloads go straight to the same media folder Jellyfin watches — no manual file transfers needed.
+
+- **WebUI:** `http://100.121.71.88:8081`
+- **Download path:** `/downloads` (maps to `/home/jovi/media` on Pi)
+- **Port:** 8081 (WebUI), 6881 (torrents)
+
+### qBittorrent Dashboard
+![qBittorrent Dashboard](screenshots/qbittorrent-dashboard.png)
+
+### qBittorrent Container Running
+![qBittorrent Container](screenshots/qbittorrent-container-running.png)

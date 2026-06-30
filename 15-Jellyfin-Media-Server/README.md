@@ -72,3 +72,44 @@ Downloaded via qBittorrent directly to the Pi, automatically detected by Jellyfi
 
 ### Streaming
 ![Scarface Streaming](screenshots/jellyfin-scarface-streaming.png)
+
+## Cloudflare Tunnel + Custom Domain (jovis.casa)
+
+Set up Cloudflare Tunnel to expose Jellyfin and other self-hosted services to the internet via a custom domain, without port forwarding or exposing the home network directly.
+
+### Setup
+
+1. Purchased domain `jovis.casa` via Cloudflare registrar
+2. Created Cloudflare Zero Trust account (Free tier)
+3. Installed `cloudflared` on the Pi and registered it as a systemd service
+4. Created tunnel `jovi-pi-tunnel`, connected and healthy
+5. Added published application routes mapping subdomains to local services:
+   - `jovis.casa` → `http://localhost:8096` (Jellyfin, root domain)
+   - `vaultwarden.jovis.casa` → `http://localhost:8082`
+   - `nextcloud.jovis.casa` → `http://localhost:8080`
+   - `qbittorrent.jovis.casa` → `http://localhost:8081`
+   - `portainer.jovis.casa` → `https://localhost:9443`
+   - `sparkyfitness.jovis.casa` → `http://localhost:8090`
+
+### Result
+
+Services are now accessible via clean HTTPS URLs from anywhere — no Tailscale client required for friends/family, no IP:port combos.
+
+## Failure: Tailscale MagicDNS Resolution Bug
+
+After setup, `jovis.casa` failed to resolve specifically on my Mac, while working fine on mobile data and other browsers.
+
+**Debugging path:**
+- Confirmed DNS records correct in Cloudflare dashboard
+- Confirmed tunnel logs showed zero incoming requests for the domain — request wasn't reaching the tunnel at all
+- Tested on phone (cellular) — worked
+- Tested in Safari — worked
+- Isolated to Chrome on Mac specifically
+- Cleared Chrome DNS cache, HSTS policies, site permissions — no fix
+- Ran `dig @100.100.100.100 jovis.casa` (Tailscale's MagicDNS resolver) — returned zero answers despite confirming the authoritative Cloudflare nameservers
+- Ran `dig @1.1.1.1 jovis.casa` — resolved correctly
+- Root cause: Tailscale's MagicDNS resolver had a stuck/broken forwarding state for this specific domain
+
+**Fix:** Disabled and re-enabled MagicDNS in the Tailscale admin console. This force-refreshed the DNS forwarding state and resolved the issue immediately.
+
+**Lesson learned:** When self-hosting with a VPN mesh network (Tailscale) active, the VPN's own DNS resolver sits in front of all DNS queries on the device — including ones that have nothing to do with the VPN network itself. A working Cloudflare Tunnel, correct DNS records, and a healthy connector mean nothing if the client device's resolver silently drops the query upstream. Systematic elimination (phone → other browser → DNS layer directly) was necessary to isolate the actual point of failure.

@@ -62,3 +62,13 @@ qBittorrent runs alongside Jellyfin as the download client. Downloads go straigh
 
 ### qBittorrent Container Running
 ![qBittorrent Container](screenshots/qbittorrent-container-running.png)
+
+## Full Pipeline Test — Scarface (1983)
+
+Downloaded via qBittorrent directly to the Pi, automatically detected by Jellyfin, metadata and poster pulled from TheMovieDB. Full end-to-end test successful.
+
+### Movie Page
+![Scarface Movie Page](screenshots/jellyfin-scarface-moviepage.png)
+
+### Streaming
+![Scarface Streaming](screenshots/jellyfin-scarface-streaming.png)

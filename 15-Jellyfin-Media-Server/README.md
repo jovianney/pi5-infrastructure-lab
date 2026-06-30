@@ -113,3 +113,42 @@ After setup, `jovis.casa` failed to resolve specifically on my Mac, while workin
 **Fix:** Disabled and re-enabled MagicDNS in the Tailscale admin console. This force-refreshed the DNS forwarding state and resolved the issue immediately.
 
 **Lesson learned:** When self-hosting with a VPN mesh network (Tailscale) active, the VPN's own DNS resolver sits in front of all DNS queries on the device — including ones that have nothing to do with the VPN network itself. A working Cloudflare Tunnel, correct DNS records, and a healthy connector mean nothing if the client device's resolver silently drops the query upstream. Systematic elimination (phone → other browser → DNS layer directly) was necessary to isolate the actual point of failure.
+
+## Samsung TV — Jellyfin Sideload
+
+Jellyfin was not available in the Samsung app store for this TV model/region. Sideloaded the official Jellyfin Tizen app using developer mode and Apps2Samsung.
+
+### Setup
+
+1. Enabled Developer Mode on TV — Apps screen → press 1-2-3-4-5 on remote → toggle ON → entered Mac's local IP (192.168.12.231) as Host PC IP
+2. Found TV's IP address in Settings → General → Network → IP Settings (192.168.12.105)
+3. Downloaded Apps2Samsung desktop app, selected Jellyfin - 2026-06-29 22:37, Jellyfin.wgt (10.12 MB)
+4. TV auto-detected, clicked Download & Install — installation successful
+5. Opened Jellyfin on TV, entered `https://jovis.casa` as server address, logged in
+
+### Proof
+
+### Developer Mode Enabled
+![Developer Mode Enabled](screenshots/samsung-tv-developer-mode-enabled.png)
+
+### TV IP Address
+![TV IP Address](screenshots/samsung-tv-ip-address.png)
+
+### Developer Mode Host PC IP
+![Host PC IP](screenshots/samsung-tv-developer-mode-host-ip.png)
+
+### Installing via Apps2Samsung
+![Installing](screenshots/samsung-tv-jellyfin-installing.png)
+
+### Installation Successful
+![Installed](screenshots/samsung-tv-jellyfin-installed.png)
+
+### Jellyfin App on TV
+![App Installed](screenshots/samsung-tv-jellyfin-app-installed.png)
+
+### Jellyfin Running on Samsung TV
+![Jellyfin Running](screenshots/samsung-tv-jellyfin-running.png)
+
+## Lesson Learned — Developer Mode IP Mismatch
+
+Apps2Samsung requires the HOST machine's IP (the Mac doing the install) entered into the TV's Developer Mode settings, not the TV's own IP. Entering the wrong IP caused a "Developer Mode IP doesn't match this PC" error that blocked installation until corrected.

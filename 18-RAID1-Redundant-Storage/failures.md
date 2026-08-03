@@ -5,6 +5,17 @@ each with real root cause and fix. This is the boss fight.
 
 ---
 
+## Update — Hub-Boot Rule Revisited
+**Date:** July 2026
+Original Incident 1 rule stated boot drives must never go through a USB 
+hub. Since then, the T7 has been reliably power-cycling through the 
+SABRENT hub for multiple weeks with zero enumeration failures. The 
+original failure appears to have been specific to that RAID recovery 
+moment, not a hard hub-boot incompatibility. Rule downgraded from 
+"permanent" to "watch for it if issues resurface."
+
+---
+
 ## Incident 1 — USB Hub Enumeration Failure (Bootloader Level)
 
 **Problem:** After the initial RAID array build, the T7 boot drive was 
